@@ -43,4 +43,8 @@ describe("Basic tests for sumFromString function", () => {
       "Negatives not allowed: -2, -4"
     );
   });
+
+  test("should support single custom delimiter of any length", () => {
+    expect(sumFromString("//[***]\n1***2***3")).toBe(0);
+  });
 });
