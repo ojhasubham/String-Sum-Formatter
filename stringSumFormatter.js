@@ -18,14 +18,22 @@ function sumFromString(numbers) {
 
   const numArray = numbers.split(delimiter).map(Number);
   let sum = 0;
+  const negatives = [];
+
   for (let i = 0; i < numArray.length; i++) {
-    if (numArray[i] <= 1000) sum += numArray[i]; // Ignore numbers larger than 1000
+    if (numArray[i] < 0) {
+      negatives.push(numArray[i]);
+    } else if (numArray[i] <= 1000) {
+      sum += numArray[i];
+    }
+  }
+
+  if (negatives.length > 0) {
+    throw new Error(`Negatives not allowed: ${negatives.join(", ")}`);
   }
 
   return sum;
 }
-
-
 
 function extractDelimiter(header) {
   const delimiter = header.slice(2); // Extract the delimiter from the header (removes "//" prefix)
