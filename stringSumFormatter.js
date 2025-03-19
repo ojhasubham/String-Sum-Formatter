@@ -4,6 +4,7 @@
  * @param {string} numbers - The input string containing numbers.
  * @returns {number} The sum of the numbers.
  */
+
 function sumFromString(numbers) {
   if (numbers === "") return 0;
 
@@ -18,7 +19,7 @@ function sumFromString(numbers) {
   const numArray = numbers.split(delimiter).map(Number);
   let sum = 0;
   for (let i = 0; i < numArray.length; i++) {
-    sum += numArray[i]; // Sum the numbers
+    if (numArray[i] <= 1000) sum += numArray[i]; // Ignore numbers larger than 1000
   }
 
   return sum;

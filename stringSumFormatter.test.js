@@ -25,12 +25,16 @@ describe("Basic tests for sumFromString function", () => {
   test("should handle new lines between numbers", () => {
     expect(sumFromString("1\n2,3")).toBe(6);
   });
-  
+
   test("should support custom delimiter", () => {
     expect(sumFromString("//;\n1;2")).toBe(3);
   });
 
   test("should support special character delimiters", () => {
     expect(sumFromString("//.\n4.5.6")).toBe(15);
+  });
+
+  test("should ignore numbers greater than 1000", () => {
+    expect(sumFromString("2,1001")).toBe(2);
   });
 });
