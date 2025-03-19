@@ -45,6 +45,10 @@ describe("Basic tests for sumFromString function", () => {
   });
 
   test("should support single custom delimiter of any length", () => {
-    expect(sumFromString("//[***]\n1***2***3")).toBe(0);
+    expect(sumFromString("//[***]\n1***2***3")).toBe(6);
+  });
+
+  test("should support multiple custom delimiters of any length", () => {
+    expect(sumFromString("//[***][%%]\n1***2%%3")).toBe(6);
   });
 });
