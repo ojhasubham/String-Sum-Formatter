@@ -11,16 +11,12 @@ function extractDelimiter(header) {
 }
 
 function extractMultipleDelimiters(header) {
-  const matches = header.match(/\[([^\]]+)\]/g);
-  const delimiters = [];
-
-  for (let i = 0; i < matches.length; i++) {
-    let delimiter = matches[i].slice(1, -1); 
-    delimiter = delimiter.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    delimiters.push(delimiter);
-  }
-
-  return delimiters.join("|"); 
+  return header
+    .match(/\[([^\]]+)\]/g)
+    .map((delimiter) =>
+      delimiter.slice(1, -1).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+    )
+    .join("|");
 }
 
 function sumFromString(numbers) {
