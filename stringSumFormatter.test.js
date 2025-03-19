@@ -51,4 +51,8 @@ describe("Basic tests for sumFromString function", () => {
   test("should support multiple custom delimiters of any length", () => {
     expect(sumFromString("//[***][%%]\n1***2%%3")).toBe(6);
   });
+
+  test("should ignore numbers greater than 1000 with multiple delimiters", () => {
+    expect(sumFromString("//[***][%%]\n2***1001%%3")).toBe(5);
+  });
 });
