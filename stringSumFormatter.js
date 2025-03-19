@@ -7,25 +7,23 @@
 function sumFromString(numbers) {
   if (numbers === "") return 0;
 
-  let delimiter = /,|\n/; // Default delimiter (comma or newline)
+  let delimiter = /,|\n/; // Default delimiters (comma or newline)
 
-  // Check if the input string starts with a custom delimiter definition
   if (numbers.startsWith("//")) {
     const parts = numbers.split("\n");
     delimiter = new RegExp(extractDelimiter(parts[0])); // Extract custom delimiter
-    numbers = parts[1]; // Extract the numbers part of the string
+    numbers = parts[1]; // Extract the numbers part
   }
 
-  // Split numbers by the delimiter and calculate the sum
   const numArray = numbers.split(delimiter).map(Number);
   let sum = 0;
-
   for (let i = 0; i < numArray.length; i++) {
-    sum += numArray[i];
+    sum += numArray[i]; // Sum the numbers
   }
 
   return sum;
 }
+
 
 
 function extractDelimiter(header) {

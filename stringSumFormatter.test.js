@@ -17,6 +17,15 @@ describe("Basic tests for sumFromString function", () => {
   test("should handle new lines between numbers", () => {
     expect(sumFromString("1\n2,3")).toBe(6);
   });
+
+  test("should return the sum of two numbers separated by comma", () => {
+    expect(sumFromString("1,2")).toBe(3);
+  });
+
+  test("should handle new lines between numbers", () => {
+    expect(sumFromString("1\n2,3")).toBe(6);
+  });
+  
   test("should support custom delimiter", () => {
     expect(sumFromString("//;\n1;2")).toBe(3);
   });
