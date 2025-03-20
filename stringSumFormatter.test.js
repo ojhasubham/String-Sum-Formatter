@@ -1,9 +1,16 @@
-// __tests__/addStringBasicTests.test.js
 const { sumFromString } = require("./stringSumFormatter");
 
 describe("Basic tests for sumFromString function", () => {
   test("should return 0 for an empty string", () => {
     expect(sumFromString("")).toBe(0);
+  });
+
+  test("should return 0 for an empty string", () => {
+    expect(sumFromString(null)).toBe(0);
+  });
+
+  test("should return 0 for an empty string", () => {
+    expect(sumFromString()).toBe(0);
   });
 
   test("should return the number itself for single number input", () => {
@@ -26,6 +33,11 @@ describe("Basic tests for sumFromString function", () => {
     expect(sumFromString("1\n2,3")).toBe(6);
   });
 
+  test("should handles an unknown amount of numbers", () => {
+    expect(sumFromString("1,2,3,4,5,6,7,8,9,10")).toBe(55);
+    expect(sumFromString("//;\n1;2;3;4;5;6;7;8;9;10;11;12;13;14;15")).toBe(120);
+  });
+
   test("should support custom delimiter", () => {
     expect(sumFromString("//;\n1;2")).toBe(3);
   });
@@ -42,6 +54,10 @@ describe("Basic tests for sumFromString function", () => {
     expect(() => sumFromString("1,-2,3,-4")).toThrow(
       "Negatives not allowed: -2, -4"
     );
+  });
+
+  test("should ignore numbers greater than 1000 and negative", () => {
+    expect(() => sumFromString("-2,1001")).toThrow("Negatives not allowed: -2");
   });
 
   test("should support single custom delimiter of any length", () => {

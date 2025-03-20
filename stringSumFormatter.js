@@ -28,7 +28,7 @@ function extractMultipleDelimiters(header) {
 }
 
 function sumFromString(numbers) {
-  if (numbers === "") return 0; // Return 0 if the input is empty
+  if (!numbers) return 0; // Return 0 if the input is empty
 
   let delimiter = /,|\n/;
 
@@ -40,15 +40,15 @@ function sumFromString(numbers) {
     if (parts[0].includes("[") && parts[0].includes("]")) {
       delimiter = new RegExp(extractMultipleDelimiters(parts[0]));
     } else {
-      delimiter = new RegExp(extractDelimiter(parts[0])); 
+      delimiter = new RegExp(extractDelimiter(parts[0]));
     }
 
     numbers = parts[1];
   }
 
-  const numArray = numbers.split(delimiter).map(Number); 
+  const numArray = numbers.split(delimiter).map(Number);
   let sum = 0;
-  const negatives = []; 
+  const negatives = [];
 
   // Loop through numbers to sum valid ones and detect negatives
   for (let i = 0; i < numArray.length; i++) {
